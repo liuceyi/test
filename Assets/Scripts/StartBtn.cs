@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartBtn : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class StartBtn : MonoBehaviour
     
     private Animator anim;
     private AnimatorStateInfo animatorInfo;
-
+    private Boolean isEnd;
 
 
     // Start is called before the first frame update
@@ -25,12 +27,12 @@ public class StartBtn : MonoBehaviour
         
         Destroy(imgFrogWait);
 
-        Instantiate(imgFrogHit);
-
-        imgFrogHit.SetActive(true);
+        imgFrogHit = Instantiate(imgFrogHit);
+        isEnd = false;
+        //imgFrogHit.SetActive(true);
 
         anim = imgFrogHit.GetComponent<Animator>();
-        print(anim.GetCurrentAnimatorStateInfo(0));
+        
         
         
         //anim.SetBool("animationRun", true);
@@ -40,14 +42,17 @@ public class StartBtn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (anim && anim.runtimeAnimatorController) 
+        UnityEngine.Debug.Log(GameController.gameController.getMoney()); 
+        if (anim && anim.runtimeAnimatorController && !isEnd) 
         {
             animatorInfo = anim.GetCurrentAnimatorStateInfo(0);//获取动画信息
 
             if (animatorInfo.normalizedTime >= 1.0f)
             {
+                isEnd = true;
                 //播放完毕，要执行的内容
                 print("hello sakuyo");
+                SceneManager.LoadScene("home");
             }
         }
 
