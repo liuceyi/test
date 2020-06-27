@@ -18,6 +18,8 @@ public static class PublicTool
                 break;
 
         }
+
+        MsgCenterRabbitVer.Instance.Publish("UpdateMainUI");
     }
     //sakuyo branch is here
     //general method
