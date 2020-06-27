@@ -10,22 +10,20 @@ public class PanelController : MonoBehaviour
     public Text codeXp;
     // Start is called before the first frame update
 
-    private void Awake()
-    {
-        MsgCenterRabbitVer.Instance.SubscribeMessage("UpdateMainUI", UpdateUI);
-    }
-
-    private void OnDestroy()
-    {
-        MsgCenterRabbitVer.Instance.RemoveMessage("UpdateMainUI");
-    }
-
-
     void UpdateUI() 
     {
         codeNickname.text = GameController.gameController.getNickname();
         codeMoney.text = GameController.gameController.getMoney().ToString();
-        codeXp.text = GameController.gameController.getXp().ToString();
+        codeMoney.text = GameController.gameController.getXp().ToString();
     }
-    
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }
