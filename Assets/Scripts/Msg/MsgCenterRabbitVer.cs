@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,7 +7,7 @@ using UnityEngine.Events;
 public class MsgCenterRabbitVer : Singleton<MsgCenterRabbitVer>
 {
 
-    public Dictionary<string, UnityAction> dicMsg = new Dictionary<string, UnityAction>();
+    private Dictionary<string, Action<ArrayList>> dicMsg = new Dictionary<string, Action<ArrayList>>();
 
 
     public void Init()
@@ -14,7 +15,7 @@ public class MsgCenterRabbitVer : Singleton<MsgCenterRabbitVer>
         dicMsg.Clear();
     }
 
-    public void SubscribeMessage(string str, UnityAction call)
+    public void SubscribeMessage(string str, Action<ArrayList> call)
     {
         if (dicMsg.ContainsKey(str))
         {
@@ -33,12 +34,12 @@ public class MsgCenterRabbitVer : Singleton<MsgCenterRabbitVer>
             dicMsg.Remove(str);
         }
     }
-
-    public void Publish(string str)
+    //触发对应str的action，参数为arraylist中泛型的obj
+    public void Publish(string str, ArrayList obj)
     {
         if (dicMsg.ContainsKey(str))
         {
-            dicMsg[str].Invoke();
+            dicMsg[str].Invoke(obj);
         }
     }
 }

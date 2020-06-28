@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PanelController : MonoBehaviour
@@ -12,6 +14,7 @@ public class PanelController : MonoBehaviour
 
     private void Awake()
     {
+        Action<ArrayList> call = new Action<ArrayList>(UpdateUI);
         MsgCenterRabbitVer.Instance.SubscribeMessage("UpdateMainUI", UpdateUI);
     }
 
@@ -21,11 +24,12 @@ public class PanelController : MonoBehaviour
     }
 
 
-    void UpdateUI() 
+    void UpdateUI(ArrayList obj) 
     {
         codeNickname.text = GameController.gameController.getNickname();
         codeMoney.text = GameController.gameController.getMoney().ToString();
         codeXp.text = GameController.gameController.getXp().ToString();
+        print("Trigger Message：" + obj[0] + obj[1]);
     }
     
 }

@@ -15,12 +15,7 @@ public class StartBtn : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-        
 
-    }
     public void OnButtonClick()
     {
         GameObject imgFrogHit = (GameObject)Resources.Load("Prefabs/img_frog_hit");
@@ -36,13 +31,12 @@ public class StartBtn : MonoBehaviour
         
         
         //anim.SetBool("animationRun", true);
-        //Debug.Log("hello sakuyo");
-        //SceneManager.LoadScene("home");
+
     }
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Debug.Log(GameController.gameController.getMoney()); 
+        
         if (anim && anim.runtimeAnimatorController && !isEnd) 
         {
             animatorInfo = anim.GetCurrentAnimatorStateInfo(0);//获取动画信息

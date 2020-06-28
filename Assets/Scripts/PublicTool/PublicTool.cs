@@ -19,7 +19,7 @@ public static class PublicTool
 
         }
 
-        MsgCenterRabbitVer.Instance.Publish("UpdateMainUI");
+        MsgCenterRabbitVer.Instance.Publish("UpdateMainUI",new ArrayList {123,"sakuyo" });
     }
     //sakuyo branch is here
     //general method
