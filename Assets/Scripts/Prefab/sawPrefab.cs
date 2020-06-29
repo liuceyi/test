@@ -17,7 +17,7 @@ public class sawPrefab : MonoBehaviour
         if (posNow.x > 1260 || posNow.x < 0 || posNow.y > 600 || posNow.y < 0) 
         {
             Destroy(gameObject);
-            MsgCenterRabbitVer.Instance.Publish("EditSawIndex", new ArrayList { -1 });
+            
         }
     }
 }
