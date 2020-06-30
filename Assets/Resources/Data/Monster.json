@@ -1,0 +1,28 @@
+{
+  "normal": {
+    "guy":{
+      "HP": "2",
+      "STR": "1",
+      "AGI": "2"
+    }
+  },
+  "elite": {
+    "pinkguy":{
+      "HP": "1",
+      "STR": "1",
+      "AGI": "6"
+    },
+    "powerguy":{
+      "HP": "10",
+      "STR": "4",
+      "AGI": "1"
+    }
+  },
+  "boss": {
+    "superguy":{
+      "HP": "30",
+      "STR": "3",
+      "AGI": "4"
+    }
+  }
+}

@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject scoreBoard;
     public GameObject HPBar;
+    public GameObject textLose;
+    public GameObject btnRestart;
+    public GameObject btnBackHome;
+
     private Animator anim;  //动画组件
     private Rigidbody2D rig;
 
     //玩家的基础属性
-    private float _HP = 5;
-    public float HP {
-        get {
-            return _HP;
-        }
-        set {
-            _HP = value;
-            HPBar.GetComponent<HPBarController>().setHP(value);
-        }
-    }//玩家的血量
+
+    public float HP = 5;//玩家的血量
     public float speed;//玩家的移动速度
     public float unhurtTime = 1;//玩家的无敌时间
     // 玩家的输入信息
@@ -36,8 +33,10 @@ public class PlayerController : MonoBehaviour
 
     private bool beingHurt = false;
     // Start is called before the first frame update
+
     void Start()
     {
+
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         movementType = Enums.movementType.AllDirections;
@@ -69,21 +68,23 @@ public class PlayerController : MonoBehaviour
     }
     public void getHurt(float damage) 
     {
+        HP -= damage;
+        if (HP <= 0)
+        {
+            gameOver();
+            return;
+        }
         if (beingHurt) return;
         beingHurt = true;//触发无敌时间
-        HP -= damage;
+        HPBar.GetComponent<HPBarController>().hurt(damage);
         anim.SetTrigger("isHurt");
         StartCoroutine(recoverState());
 
-        if (HP <= 0) 
-        {
-            gameOver();
-        }
+
     }
     IEnumerator recoverState() 
     {
         yield return new WaitForSeconds(unhurtTime);
-        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         beingHurt = false;
         //解除无敌
     }
@@ -94,7 +95,14 @@ public class PlayerController : MonoBehaviour
     }
     private void gameOver() 
     {
+        anim.SetBool("die",true);
+        
         //gameover
+        textLose.SetActive(true);
+        textLose.GetComponent<Text>().text = "You lose !";
+        btnRestart.SetActive(true);
+        btnBackHome.SetActive(true);
+        Destroy(gameObject);
     }
     void switchAnim() {
         if (moveHorizontal > 0)              // 播放向右走动画

@@ -24,11 +24,19 @@ public class HPBarController : MonoBehaviour
         if (HP <= 0) return;
         for (int i = 0; i < HP; i++)
         {
-            Instantiate(HPPrefab);
-            HPPrefab.transform.parent = transform;
+            GameObject heart = Instantiate(HPPrefab);
+            heart.transform.SetParent(transform);
         }
     }
     // Update is called once per frame
+    public void hurt(float damage) 
+    {
+        
+        for (int i = 0; i < damage; i++)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
+    }
     void Update()
     {
         

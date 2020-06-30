@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class PanelController : MonoBehaviour
@@ -16,6 +17,7 @@ public class PanelController : MonoBehaviour
     {
         Action<ArrayList> call = new Action<ArrayList>(UpdateUI);
         MsgCenterRabbitVer.Instance.SubscribeMessage("UpdateMainUI", UpdateUI);
+        UpdateUI(new ArrayList { 123, "sakuyo" });
     }
 
     private void OnDestroy()
