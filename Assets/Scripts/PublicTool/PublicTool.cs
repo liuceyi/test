@@ -9,12 +9,10 @@ public static class PublicTool
         switch (attribute) 
         {
             case PlayerAttribute.Money:
-                int money = GameController.gameController.getMoney();
-                GameController.gameController.setMoney(money + num);
+                GameController.gameController.playerMoney += num;
                 break;
             case PlayerAttribute.Xp:
-                int Xp = GameController.gameController.getXp();
-                GameController.gameController.setXp(Xp + num);
+                GameController.gameController.playerXp += num;
                 break;
 
         }

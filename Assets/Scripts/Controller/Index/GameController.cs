@@ -7,36 +7,65 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private string _playerNickname;
-    private int _playerXp;
-    private int _playerMoney;
+    public string playerNickname 
+    {
+        get 
+        {
+            return _playerNickname;
+        }
 
+        set 
+        {
+            _playerNickname = value;
+        }
+    }
+    private int _playerXp;
+    public int playerXp
+    {
+        get
+        {
+            return  _playerXp;
+;
+        }
+        set
+        {
+            _playerXp = value;
+        }
+    }
+    private int _playerMoney;
+    public int playerMoney
+    { 
+        get 
+        {
+            return _playerMoney;
+        }
+        set 
+        {
+            _playerMoney = value;
+        } 
+    }
+    private int _wave;
+    public int wave
+    {
+        get
+        {
+            return _wave;
+        }
+        set
+        {
+            _wave = value;
+        }
+    }
+    public int targetWave;
     public GameController()
     {
-        _playerNickname = "sakuyo";
-        _playerXp = 0;
-        _playerMoney = 100;
+        playerNickname = "sakuyo";
+        playerXp = 0;
+        playerMoney = 100;
+        wave = 0;
     }
 
-    public int getMoney() 
-    {
-        return _playerMoney;
-    }
-    public void setMoney(int num) 
-    {
-        _playerMoney = num;
-    }
-    public int getXp()
-    {
-        return _playerXp;
-    }
-    public void setXp(int num)
-    {
-        _playerXp = num;
-    }
-    public string getNickname()
-    {
-        return _playerNickname;
-    }
+
     public static GameController _gameController;
     public static GameController gameController
     {
@@ -54,15 +83,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
-    }
-    void Start()
-    {
-        
+        PlayerSave.Instance.gameRead();//读档
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

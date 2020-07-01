@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 6762397184405164457}
   - component: {fileID: 6360214271726243917}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: enemy_spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,7 @@ Animator:
   m_GameObject: {fileID: 4043388154189560570}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 18a555d6bf80f0847a68097220505026, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

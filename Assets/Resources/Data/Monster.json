@@ -3,26 +3,26 @@
     "guy":{
       "HP": "2",
       "STR": "1",
-      "AGI": "2"
+      "AGI": "120"
     }
   },
   "elite": {
     "pinkguy":{
       "HP": "1",
       "STR": "1",
-      "AGI": "6"
+      "AGI": "360"
     },
     "powerguy":{
       "HP": "10",
       "STR": "4",
-      "AGI": "1"
+      "AGI": "60"
     }
   },
   "boss": {
     "superguy":{
       "HP": "30",
       "STR": "3",
-      "AGI": "4"
+      "AGI": "240"
     }
   }
 }

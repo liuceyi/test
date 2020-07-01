@@ -28,9 +28,9 @@ public class PanelController : MonoBehaviour
 
     void UpdateUI(ArrayList obj) 
     {
-        codeNickname.text = GameController.gameController.getNickname();
-        codeMoney.text = GameController.gameController.getMoney().ToString();
-        codeXp.text = GameController.gameController.getXp().ToString();
+        codeNickname.text = GameController.gameController.playerNickname;
+        codeMoney.text = GameController.gameController.playerMoney.ToString();
+        codeXp.text = GameController.gameController.playerXp.ToString();
         print("Trigger Message：" + obj[0] + obj[1]);
     }
     
