@@ -57,6 +57,8 @@ public class GameController : MonoBehaviour
         }
     }
     public int targetWave;
+
+    public string[] skillList = {"Giant Saw" };
     public GameController()
     {
         playerNickname = "sakuyo";

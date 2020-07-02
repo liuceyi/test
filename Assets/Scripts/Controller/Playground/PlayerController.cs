@@ -4,21 +4,17 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoSingleton<PlayerController>
 {
-    public GameObject scoreBoard;
+    
     public GameObject HPBar;
-    public GameObject textLose;
-    public GameObject btnRestart;
-    public GameObject btnBackHome;
-
     private Animator anim;  //动画组件
     private Rigidbody2D rig;
 
     //玩家的基础属性
 
     public float HP = 5;//玩家的血量
-    public float speed;//玩家的移动速度
+    public float playerAGI;//玩家的移动速度
     public float unhurtTime = 1;//玩家的无敌时间
     // 玩家的输入信息
     private float moveHorizontal;
@@ -30,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public float xMax, xMin, yMax, yMin;
     
     public Enums.movementType movementType;
-
+    private bool moveable = true;//玩家的移动控制开关
     private bool beingHurt = false;
     // Start is called before the first frame update
 
@@ -54,24 +50,40 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (moveable)
+        {
+            float fx = Mathf.Clamp(transform.position.x + moveHorizontal * playerAGI, xMin, xMax);
+            float fy = Mathf.Clamp(transform.position.y + moveVertical * playerAGI, yMin, yMax);
+            //改变坐标实现移动（个人认为更顺滑）
+            transform.position = new Vector2(fx, fy);
+        }
+        else 
+        {
+            transform.position = new Vector2(0, 0);
+        }
         
-        float fx = Mathf.Clamp(transform.position.x + moveHorizontal * speed, xMin, xMax);
-        float fy = Mathf.Clamp(transform.position.y + moveVertical * speed, yMin, yMax);
-        //改变坐标实现移动（个人认为更顺滑）
-        transform.position = new Vector2(fx , fy);
-        
-        // 对玩家施加力
-        //rig.AddForce(movement * speed * 10.0f);
 
-        //让玩家不要超出画幅
 
+    }
+    public void AGIUp(float index, float time) 
+    {
+        playerAGI += index;
+    }
+    public void AGIDown(float index, float time) 
+    {
+        playerAGI -= index;
     }
     public void getHurt(float damage) 
     {
         HP -= damage;
         if (HP <= 0)
         {
-            gameOver();
+            //停止移动
+            HPBar.GetComponent<HPBarController>().clear();
+            anim.SetBool("die", true);
+            moveable = false;
+            BattleController.Instance.gameOver();
+            Destroy(gameObject);
             return;
         }
         if (beingHurt) return;
@@ -89,21 +101,8 @@ public class PlayerController : MonoBehaviour
         //解除无敌
     }
 
-    public void getScore(float score)
-    {
-        scoreBoard.GetComponent<scoreController>().score += score;
-    }
-    private void gameOver() 
-    {
-        anim.SetBool("die",true);
-        
-        //gameover
-        textLose.SetActive(true);
-        textLose.GetComponent<Text>().text = "You lose !";
-        btnRestart.SetActive(true);
-        btnBackHome.SetActive(true);
-        Destroy(gameObject);
-    }
+
+
     void switchAnim() {
         if (moveHorizontal > 0)              // 播放向右走动画
         {

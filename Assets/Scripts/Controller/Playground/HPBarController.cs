@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class HPBarController : MonoBehaviour
 {
-    public GameObject player;
     public GameObject HPPrefab;
     private float HP;
     // Start is called before the first frame update
     void Start()
     {
         //init
-        HP = player.GetComponent<PlayerController>().HP;
+        HP = PlayerController.Instance.HP;
         for (int i = 0; i < HP; i++)
         {
             Instantiate(HPPrefab, transform);
@@ -35,6 +34,14 @@ public class HPBarController : MonoBehaviour
         for (int i = 0; i < damage; i++)
         {
             Destroy(transform.GetChild(0).gameObject);
+        }
+    }
+    public void clear() 
+    {
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
     void Update()

@@ -39,7 +39,7 @@ public class CanvasShowController : MonoBehaviour
         
         GameObject enemyShowUnit = Instantiate(enemyShowPrefab);
         enemyShowUnit.transform.SetParent(transform);
-        enemyShowUnit.GetComponent<enemyShow>().init(enemyStr);
+        enemyShowUnit.GetComponent<EnemyShow>().init(enemyStr);
 
     }
     // Update is called once per frame

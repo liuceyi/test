@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class enemyPrefab : MonoBehaviour
+public class EnemyPrefab : MonoBehaviour
 {
     public Slider HPBar;
     private GameObject player;
@@ -11,7 +11,7 @@ public class enemyPrefab : MonoBehaviour
     
     private float _enemyHP;
     private float enemyHPFull;
-    private float enemyHP 
+    public float enemyHP 
     {
         get
         {
@@ -102,14 +102,13 @@ public class enemyPrefab : MonoBehaviour
         {
             //敌人撞到玩家
             
-            player.GetComponent<PlayerController>().getHurt(enemySTR);
+            PlayerController.Instance.getHurt(enemySTR);
         }
         if (tag == "Attack") 
         {
             hurting = true;
             Invoke("beingHurt", 0.2f);
             //敌人被击中
-            enemyHP -= 1;
             anim.SetTrigger("hurt");
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             Destroy(collider.gameObject);
@@ -118,7 +117,7 @@ public class enemyPrefab : MonoBehaviour
                 dying = true;
                 anim.SetBool("die",true);
                 // 销毁当前游戏物体
-                player.GetComponent<PlayerController>().getScore(1);
+                BattleController.Instance.getScore(1);
                 //销毁攻击物体（子弹类）
                 Destroy(HPBar);
                 isAlive = false;

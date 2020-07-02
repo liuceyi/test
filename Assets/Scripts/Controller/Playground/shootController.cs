@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class ShootController : MonoBehaviour
 {
@@ -11,7 +7,6 @@ public class ShootController : MonoBehaviour
     //读取saw的预制体
     public GameObject sawPrefab;
     public GameObject SawsList;//空的父物体，用于储存saw
-    private int sawIndex; //场上存在的saw的数量
     public int sawMaxNum;//场上最多同时存在saw的数量
     public float sawSpeed;//saw的移动速度
 

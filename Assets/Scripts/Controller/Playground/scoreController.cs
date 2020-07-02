@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class scoreController : MonoBehaviour
+public class ScoreController : MonoBehaviour
 {
     public Text codeScore;
     private float _score;
@@ -16,16 +16,5 @@ public class scoreController : MonoBehaviour
             codeScore.text = value.ToString();
         }
     
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

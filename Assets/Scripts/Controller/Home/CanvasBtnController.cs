@@ -17,7 +17,7 @@ public class CanvasBtnController : MonoBehaviour
         for (int i = 0; i < wave+1; i++)
         {
             GameObject waveBtn = Instantiate(waveBtnPrefab);
-            waveBtn.GetComponent<btnWave>().init(i+1);
+            waveBtn.GetComponent<BtnWave>().init(i+1);
             waveBtn.transform.SetParent(transform);
             waveBtn.GetComponentInChildren<Text>().text = "wave " + (i+1);
         }

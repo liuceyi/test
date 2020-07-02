@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyShow : MonoBehaviour
+public class EnemyShow : MonoBehaviour
 {
     private string enemyName;
     private Animator anim;  //动画组件

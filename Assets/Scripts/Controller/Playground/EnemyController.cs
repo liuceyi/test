@@ -9,12 +9,12 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
     public GameObject EnemyList;//储存Enemy的空的父物体
     public GameObject JsonManager;
-    public GameObject BtnStart;
+
     public GameObject scoreBoard;
     public GameObject textWin;
     public GameObject btnRestart;
     public GameObject btnBackHome;
-    public float time = 0.5f;
+    public float time = 0.2f;
     public List<String> enemySpawnList;//怪物刷新列表
     public float enemySpeed;//enemy的移动速度
     public float enemyHP;//enemy的HP
@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
         textWin.SetActive(false);
         btnRestart.SetActive(false);
         btnBackHome.SetActive(false);
-        enemyData = (Dictionary<string, Dictionary<string, Monster>>)JsonManager.GetComponent<jsonManager>().getJsonObj("monster");
+        enemyData = (Dictionary<string, Dictionary<string, Monster>>)JsonController.Instance.getJsonObj("monster");
         enemyStationList = new List<Vector2>();
         enemyStationList.Add(new Vector2(0, 0));
         enemyStationList.Add(new Vector2(1260, 0));
@@ -60,32 +60,14 @@ public class EnemyController : MonoBehaviour
             if (!updated && EnemyList.transform.childCount == 0) 
             {
                 updated = true;
-                GameWin();
+                BattleController.Instance.gameWin();
             }
         } 
     }
-    public void GameWin() 
-    {
-        //根据得分增加经验，金币
-        int score = (int)scoreBoard.GetComponent<scoreController>().score;
-        PublicTool.changeAttribute(PlayerAttribute.Xp, 1 * score);
-        PublicTool.changeAttribute(PlayerAttribute.Money, 100 * score);
-        //关卡结算
-        if(GameController.gameController.targetWave < 3 && GameController.gameController.targetWave > GameController.gameController.wave)
-        GameController.gameController.wave += 1;
-        //关卡通过自动保存
-        PlayerSave.Instance.gameSave();
-        //弹出胜利UI
-        textWin.SetActive(true);
-        btnRestart.SetActive(true);
-        btnBackHome.SetActive(true);
-    }
+
     public void StartSpawnEnemy()
-    {
-        Destroy(BtnStart);
-
+    {   
         InvokeRepeating("waitForSpawnEnemy",0,time);
-
     }
     void waitForSpawnEnemy() 
     {
@@ -113,7 +95,7 @@ public class EnemyController : MonoBehaviour
         GameObject enemyClone = Instantiate(enemyPrefab, enemyStationList[ranNum], Quaternion.identity);
         
         enemyClone.transform.parent = EnemyList.transform;
-        enemyClone.GetComponent<enemyPrefab>().init(enemyName, player, enemyData[enemyType][enemyName]);
+        enemyClone.GetComponent<EnemyPrefab>().init(enemyName, player, enemyData[enemyType][enemyName]);
         
         enemySpawnList.RemoveAt(0);
 

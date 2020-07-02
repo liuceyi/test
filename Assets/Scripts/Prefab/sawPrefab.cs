@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sawPrefab : MonoBehaviour
+public class SawPrefab : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public float damage = 1;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -19,5 +15,17 @@ public class sawPrefab : MonoBehaviour
             Destroy(gameObject);
             
         }
+    }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        var tag = collider.tag;
+        Debug.Log(tag);
+        if (tag == "Enemy")
+        {
+            //敌人被击中
+            collider.gameObject.GetComponent<EnemyPrefab>().enemyHP -= damage;
+        }
+
+
     }
 }
