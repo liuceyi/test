@@ -1,25 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
 
-public class JsonController : Singleton<JsonController>
+public class MonsterJson
 {
-    // Start is called before the first frame update
-
-    public object getJsonObj(string jsonTag) 
-    {
-        object jsonObj = null;
-        switch (jsonTag)
-        {
-            case "monster":
-                jsonObj = getMonsterJson(); 
-                break;
-        }
-        return jsonObj;
-    }
-    public object getMonsterJson() 
+    public object getMonsterJson()
     {
         string jsonString = File.ReadAllText(Application.dataPath + "/Resources/Data/Monster.json");
         MonsterType monsterObject = JsonUtility.FromJson<MonsterType>(jsonString);
@@ -28,22 +14,19 @@ public class JsonController : Singleton<JsonController>
         Dictionary<string, Monster> elite = new Dictionary<string, Monster>();
         Dictionary<string, Monster> boss = new Dictionary<string, Monster>();
         //normal
-        normal.Add("guy",monsterObject.normal.guy);
+        normal.Add("guy", monsterObject.normal.guy);
         //elite
         elite.Add("pinkguy", monsterObject.elite.pinkguy);
         elite.Add("powerguy", monsterObject.elite.powerguy);
         //boss
         boss.Add("superguy", monsterObject.boss.superguy);
         //Type
-        monsterType.Add("normal",normal);
+        monsterType.Add("normal", normal);
         monsterType.Add("elite", elite);
         monsterType.Add("boss", boss);
         return monsterType;
     }
 }
-
-
-
 [Serializable]
 public class Monster
 {
@@ -52,7 +35,7 @@ public class Monster
     public float AGI;
 }
 [Serializable]
-public class Normal 
+public class Normal
 {
     public Monster guy;
 }
