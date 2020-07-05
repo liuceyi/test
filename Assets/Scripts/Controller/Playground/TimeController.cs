@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class TimeController
 {
+
+    //rabbit
+    public void Rabbit()
+    {
+        Debug.Log(1111);
+    }
+
     public bool IsAutoCycle { get; private set; }                   // 是否自动循环（小于等于0后重置）
     public bool IsStopped { get; private set; }                     // 是否是否暂停了
     public float CurrentTime { get { return UpdateCurrentTime(); } }// 当前时间
