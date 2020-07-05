@@ -7,7 +7,7 @@ public class TestButtonDaji : MonoBehaviour
 {
     public Button btnAddMoney;
     public Button btnAddXP;
-
+    //huohuo
 
     private void Awake()
     {
@@ -28,8 +28,13 @@ public class TestButtonDaji : MonoBehaviour
     }
     void SakuyoTest()
     {
+
+        //xixixixi
+
+
         //yiyi
         Debug.Log("xixi");
+
     }
 
     void RabbitTest()
