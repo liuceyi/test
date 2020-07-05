@@ -26,4 +26,9 @@ public class TestButtonDaji : MonoBehaviour
     {
         PublicTool.changeAttribute(PlayerAttribute.Xp, 1);
     }
+    void SakuyoTest()
+    {
+        //xixi
+
+    }
 }
