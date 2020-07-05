@@ -28,7 +28,9 @@ public class TestButtonDaji : MonoBehaviour
     }
     void SakuyoTest()
     {
-        //xixi
-
+        //yiyi
+        Debug.Log("xixi");
     }
+
+
 }
