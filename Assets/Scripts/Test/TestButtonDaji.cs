@@ -7,7 +7,7 @@ public class TestButtonDaji : MonoBehaviour
 {
     public Button btnAddMoney;
     public Button btnAddXP;
-
+    //huohuo
 
     private void Awake()
     {
