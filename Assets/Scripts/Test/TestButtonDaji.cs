@@ -32,5 +32,8 @@ public class TestButtonDaji : MonoBehaviour
         Debug.Log("xixi");
     }
 
-
+    void RabbitTest()
+    {
+        Debug.Log("xx");
+    }
 }
